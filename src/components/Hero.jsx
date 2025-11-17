@@ -1,12 +1,27 @@
-import Spline from '@splinetool/react-spline';
+import { Suspense, lazy, useState } from 'react'
+
+const Spline = lazy(() => import('@splinetool/react-spline'))
 
 export default function Hero() {
+  const [failed, setFailed] = useState(false)
+
   return (
     <section className="relative h-[88vh] w-full overflow-hidden bg-black" id="home">
-      <div className="absolute inset-0">
-        <Spline scene="https://prod.spline.design/44zrIZf-iQZhbQNQ/scene.splinecode" style={{ width: '100%', height: '100%' }} />
-      </div>
+      {!failed && (
+        <div className="absolute inset-0">
+          <Suspense
+            fallback={<div className="w-full h-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-cyan-500/10 via-fuchsia-500/10 to-violet-500/10" />}
+          >
+            <Spline
+              scene="https://prod.spline.design/44zrIZf-iQZhbQNQ/scene.splinecode"
+              style={{ width: '100%', height: '100%' }}
+              onError={() => setFailed(true)}
+            />
+          </Suspense>
+        </div>
+      )}
 
+      {/* Soft overlay for readability */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/80 pointer-events-none" />
 
       <div className="relative z-10 h-full max-w-7xl mx-auto px-6 flex items-center">
