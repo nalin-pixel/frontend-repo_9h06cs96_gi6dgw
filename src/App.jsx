@@ -1,26 +1,24 @@
-import { useState } from 'react'
+import Navbar from './components/Navbar'
+import Hero from './components/Hero'
+import Signals from './components/Signals'
+import Socials from './components/Socials'
+import CTA from './components/CTA'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">
-          Vibe Coding Platform
-        </h1>
-        <p className="text-gray-600 mb-6">
-          Your AI-powered development environment
-        </p>
-        <div className="text-center">
-          <button
-            onClick={() => setCount(count + 1)}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
-          >
-            Count is {count}
-          </button>
+    <div className="bg-black min-h-screen text-white">
+      <Navbar />
+      <main className="pt-16">
+        <Hero />
+        <Signals />
+        <Socials />
+        <CTA />
+      </main>
+      <footer className="bg-black border-t border-white/10 py-8 text-center text-white/50 text-sm">
+        <div className="max-w-7xl mx-auto px-6">
+          © {new Date().getFullYear()} Anonymous Alpha — Free, 100% precise crypto signals.
         </div>
-      </div>
+      </footer>
     </div>
   )
 }
